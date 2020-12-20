@@ -1,0 +1,379 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+/* Primary Colors */
+$lime-green: hsl(163, 72%, 41%);
+$bright-red: hsl(356, 69%, 56%);
+
+$facebook: hsl(208, 92%, 53%);
+$twitter: hsl(203, 89%, 53%);
+$instagram: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+$youTube: hsl(348, 97%, 39%);
+
+/* Light Theme */
+$l-toggle: hsl(230, 22%, 74%);
+
+$white: hsl(0, 0%, 100%); // Light (background) ~ Dark - (Text)
+$very-pale-blue: hsl(225, 100%, 98%); // (Top BG Pattern)
+$light-grayish-blue: hsl(227, 47%, 96%); // (Card BG)
+$dark-grayish-blue: hsl(228, 12%, 44%); // (Text)
+$very-dark-blue: hsl(230, 17%, 14%); // Light - (Text) ~ Dark - (BG)
+
+/* Dark Theme */
+$d-toggle: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+
+$top-very-dark-blue: hsl(232, 19%, 15%); // (Top BG Pattern)
+$dark-desaturated-blue: hsl(228, 28%, 20%); // (Card BG)
+$desaturated-blue: hsl(228, 34%, 66%); // (Text)
+
+
+/* Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  transition: all 100ms ease-in-out;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+
+  @media only screen and (max-width: 1200px) {
+    padding: 2em 4em;
+  }
+}
+
+
+/* Header */
+header {
+  padding-top: 5em;
+  padding-bottom: 8em;
+  background-color: $very-pale-blue;
+  transition: all 100ms ease-in-out;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4em;
+  }
+
+  .toggle-container {
+    display: flex;
+    align-items: center;
+
+    .toggle-text {
+      margin-right: 0.5em;
+      color: $dark-grayish-blue;
+      font-weight: 700;
+    }
+
+    .toggle-switch {
+      width: 40px;
+      height: 18px;
+      border-radius: 1em;
+      background-color: $l-toggle;
+      padding: 4px;
+      cursor: pointer;
+      transition: all 100ms ease-in-out;
+      
+      .toggle-circle {
+        background-color: $white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        transition: transform 300ms ease;
+        transform-origin: 20% center;
+      }
+
+      &.active {
+        background: $d-toggle !important;
+
+        .toggle-circle {
+          transform: translateX(22px);
+        }
+      }
+    }
+  }
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 23% 23% 23% 23%;
+  grid-gap: 2.6%;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+
+  &.asc {
+    color: $lime-green;
+  }
+
+  &.desc {
+    color: $bright-red;
+  }
+
+  img {
+    margin-right: 0.5em;
+  }
+}
+
+.card {
+  border-radius: 0.3em;
+  transition: all 100ms ease-in-out;
+  background-color: $light-grayish-blue;
+
+  &:hover {
+    background-color: #e1e4f0;
+  }
+}
+
+/* [SECTION] Daily */
+#daily {
+  transform: translateY(-50%);
+
+  .card-container {
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-gap: 2.6%;
+  }
+    
+  .card {
+    padding: 2em 3em;
+    border-top-width: 5px;
+    border-top-style: solid;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      content:'';
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      top: -5px;
+      left: 0;
+      border-radius: 0.3em 0.3em 0 0;
+    }
+
+    &.facebook::before {
+      background: $facebook;
+    }
+
+    &.twitter::before {
+      background: $twitter;
+    }
+
+    &.instagram::before {
+      background: $instagram;
+    }
+
+    &.youtube::before {
+      background: $youTube;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2em;
+
+      .social-icon {
+        margin-right: 1em;
+      }
+
+      .username {
+        color: $dark-grayish-blue;
+      }
+    }
+
+    .card-body {
+      margin-bottom: 2em;
+
+      .num {
+        font-weight: 700;
+        font-size: 3rem;
+        margin-bottom: 0.2em;
+      }
+
+      .descriptor {
+        color: $dark-grayish-blue;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+#overview {
+  margin-top: -3em;
+  margin-bottom: 6em;
+
+  .card-container {
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-gap: 2.6%;
+  }
+
+  .overview-title {
+    margin-bottom: 1em;
+    font-size: 1.6rem;
+    color: $dark-grayish-blue;
+  }
+
+  .num {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  .card-container {
+    margin-bottom: 2em;
+  }
+
+  .card {
+    padding: 1em 1.6em;
+
+    .top,
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top {
+      margin-bottom: 3em;
+
+      strong {
+        color: $dark-grayish-blue;
+      }
+    }
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 2em 0;
+
+  a {
+    color: $twitter;
+  }
+}
+
+
+/* Dark Mode */
+body.dark {
+  background-color: $very-dark-blue;
+  
+  header {
+    background-color: $top-very-dark-blue;
+    color: $white;
+  }
+
+  .card {
+    background-color: $dark-desaturated-blue !important;
+
+    &:hover {
+      background-color: #333a55 !important;
+    }
+  }
+
+  .overview-title {
+    color: $white !important;
+  }
+
+  .num {
+    color: $white !important;
+  }
+
+  footer {
+    color: $white !important;
+
+    a {
+      color: $desaturated-blue !important;
+    }
+  }
+}
+
+
+/* Responsive */
+@media screen and (max-width: 950px) {
+  #daily .card-container {
+    grid-template-columns: 47% 47%;
+    grid-gap: 6%;
+    transform: translateY(40%);
+  }
+
+  #overview .card-container {
+    grid-template-columns: 47% 47%;
+    grid-gap: 6%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    border-radius: 0 0 3em 3em;
+    padding-bottom: 6em;
+
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .header-text {
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    border-bottom: 1px solid $dark-grayish-blue;
+  }
+
+  .header-title {
+    font-size: 2rem;
+    margin-bottom: 0.4em;
+  }
+
+  .header-followers {
+    font-weight: 700;
+    color: $dark-grayish-blue;
+  }
+
+  .toggle-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #daily .card-container {
+    grid-template-columns: 100%;
+    grid-gap: 2em;
+    margin: auto;
+  }
+  #overview {
+    margin-top: -6em;
+    margin-bottom: 0;
+
+    .card-container {
+      grid-template-columns: 100%;
+      grid-gap: 2em;
+    }
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
+}
